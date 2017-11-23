@@ -20,6 +20,11 @@ Plugin 'git://git.wincent.com/command-t.git'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'scrooloose/nerdtree'
 
+Plugin 'junegunn/vim-easy-align'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+Plugin 'gregsexton/gitv'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -130,5 +135,18 @@ set wildignore+=tmp/**
 syntax on                             " syntax highlight
 let base16colorspace=256
 
-nmap <F5> :NERDTreeToggle<CR>
-nmap <C-l> :NERDTree<CR>
+"nmap <F5> :NERDTreeToggle <CR>
+nmap <C-T> :NERDTree<CR>
+
+
+"airline setting
+let g:airline_theme='luna'
+"" enable tabline
+let g:airline#extensions#tabline#enabled = 1
+" set left separator
+let g:airline#extensions#tabline#left_sep = ' '
+" " set left separator which are not editting
+let g:airline#extensions#tabline#left_alt_sep = '|'
+" " show buffer number
+let g:airline#extensions#tabline#buffer_nr_show = 1
+
