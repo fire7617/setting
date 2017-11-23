@@ -130,4 +130,5 @@ set wildignore+=tmp/**
 syntax on                             " syntax highlight
 let base16colorspace=256
 
-nmap <F5> :NERDTreeToggle <CR>
+nmap <F5> :NERDTreeToggle<CR>
+nmap <C-l> :NERDTree<CR>
