@@ -1,0 +1,61 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific aliases and functions
+# .bashrc
+
+LANG='en_US.UTF-8'
+export TERM=xterm
+export UNAME=`uname -s`
+
+export PATH=/home/fire7617/usr/bin:/home/fire7617/.composer/vendor/bin/:$PATH
+# User specific aliases and functions
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias grep='grep --color'
+alias vi='vim'
+alias ll='ls -l'
+alias ls='ls --color=auto'
+alias rm='rm -r'
+
+
+
+export PS1='[\u@\h] \[\e[38;5;45m\]\w\[\e[0m\] \n$ '
+
+case $TERM in
+xterm*)
+    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
+    ;;
+*)
+    ;;
+esac
+
+# colorful man page
+export PAGER="`which less` -s"
+export BROWSER="$PAGER"
+export LESS_TERMCAP_mb=$'\E[38;5;167m'
+export LESS_TERMCAP_md=$'\E[38;5;39m'
+
+# colorful man page
+export PAGER="`which less` -s"
+export BROWSER="$PAGER"
+export LESS_TERMCAP_mb=$'\E[38;5;167m'
+export LESS_TERMCAP_md=$'\E[38;5;39m'
+export LESS_TERMCAP_me=$'\E[38;5;231m'
+export LESS_TERMCAP_se=$'\E[38;5;231m'
+export LESS_TERMCAP_so=$'\E[38;5;167m'
+export LESS_TERMCAP_ue=$'\E[38;5;231m'
+export LESS_TERMCAP_us=$'\E[38;5;167m'
+
+function pget()
+{
+    echo $1
+    cmd="pget -n 5 $1; exit"
+    lftp -e "$cmd"
+}

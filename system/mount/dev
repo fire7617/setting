@@ -1,0 +1,29 @@
+
+######################################
+# The 640 GB disk(Main)
+#######################################
+mount /dev/sda5   /media/local/music
+mount /dev/sda6   /media/local/media
+mount /dev/sda8   /media/local/software
+mount /dev/sda7   /media/local/data
+mount /dev/sda9   /media/local/temp
+mount /dev/sda10  /media/local/music2
+
+
+###########################################
+# The 160GB disk
+##########################################
+
+mount /dev/sdb1   /media/backup/DataMainBackup 
+mount /dev/sdb2   /media/backup/HomeBackup
+
+###########################################
+# The 540GB disk(external)
+##########################################
+
+mount /dev/sdc1   /media/backup/MusicBackup
+mount /dev/sdc2   /media/backup/MediaBackup
+mount /dev/sdc3   /media/backup/SoftBackup
+mount /dev/sdc4   /media/backup/DataBackup
+
+

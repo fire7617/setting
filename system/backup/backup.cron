@@ -1,0 +1,2 @@
+#locate in the /etc/cron.d/backup
+30 19 * * 0 sh /backup/localBackup
