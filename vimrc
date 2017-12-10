@@ -14,8 +14,6 @@ Plugin 'VundleVim/Vundle.vim'
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
-" Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
 " Pass the path to set the runtimepath properly.
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'scrooloose/nerdtree'
@@ -25,6 +23,19 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
 Plugin 'gregsexton/gitv'
+
+Plugin 'MarcWeber/vim-addon-mw-utils' "Plugin for snipmate
+Plugin 'tomtom/tlib_vim' " Plugin for snipmate
+Plugin 'garbas/vim-snipmate'
+
+" Show the Outlines of the page
+Plugin 'majutsushi/tagbar'
+
+" Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
+Plugin 'kien/ctrlp.vim'
+" Trace Code
+
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -43,6 +54,7 @@ filetype plugin indent on    " required
 " =================
 " "  settings
 " " =================
+set mouse=a
 set nocompatible                      " not compatible with the old-fashion vi mode
 set backspace=2                       " allow backspacing over everything in insert nc >kkmode
 set history=1000                      " keep 1000 lines of command line history
@@ -103,9 +115,9 @@ set ignorecase                        " ignore case when searching
 set smartcase
 set smarttab                          " insert tabs on the start of a line according to
 set expandtab                         " replace <TAB> with spaces
-set softtabstop=2
-set shiftwidth=2
-set tabstop=2
+set softtabstop=4
+set shiftwidth=4
+set tabstop=4
 set shortmess=Ia                      " remove splash wording
 
 " disable sound on errors
@@ -138,15 +150,49 @@ let base16colorspace=256
 "nmap <F5> :NERDTreeToggle <CR>
 nmap <C-T> :NERDTree<CR>
 
-
+"====================================================================
 "airline setting
+"====================================================================
 let g:airline_theme='luna'
 "" enable tabline
 let g:airline#extensions#tabline#enabled = 1
-" set left separator
+"" set left separator
 let g:airline#extensions#tabline#left_sep = ' '
-" " set left separator which are not editting
+"" set left separator which are not editting
 let g:airline#extensions#tabline#left_alt_sep = '|'
-" " show buffer number
+"" show buffer number
 let g:airline#extensions#tabline#buffer_nr_show = 1
+
+
+"====================================================================
+"vim-easy-align
+"====================================================================
+""Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+"" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+"====================================================================
+"tagBar
+"====================================================================
+"" 設定開啟 Tagbar 快捷鍵為 F8 "
+nmap <F8> :TagbarToggle<CR>
+" 启动时自动focus
+let g:tagbar_autofocus = 1
+
+"====================================================================
+"Ctags
+"====================================================================
+"C-] : go th definition , C-o : go back the origin position
+
+
+"====================================================================
+"CTRLP
+"====================================================================
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+"Exclude files and directories using Vim's wildignore and CtrlP's own "g:ctrlp_custom_ignore:
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+"let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = {'dir':  '\v[\/]\.(git|hg|svn)$','file': '\v\.(exe|so|dll)$','link': 'some_bad_symbolic_links'}
 
