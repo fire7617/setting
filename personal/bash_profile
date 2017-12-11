@@ -1,0 +1,33 @@
+alias ls="ls -G"
+alias ll="ls -G"
+alias ctags="/usr/local/Cellar/ctags/5.8_1/bin/ctags ."
+
+export CLICOLOR=1
+export TERM=xterm-256color
+
+
+# Brackets needed around non-printable characters in PS1
+ps1_blue='\['"\033[0;34m"'\]'
+ps1_green='\['"\033[0;32m"'\]'
+ps1_white='\['"\033[0;37m"'\]'
+ps1_purple='\['"\[\e[00;35m\]"'\]'
+#ps1_yellow='\['"\033[01;32m"'\]'
+ps1_yellow='\['"\033[00m"'\]'
+
+export PS1="\u@MacPro:$ps1_purple\w\[\$(parse_git_branch_color)\]$ps1_green\$(parse_git_branch) $ps1_blue\n\$ $ps1_white"
+
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+# Echo a non-printing color character depending on whether or not the current git branch is the master    
+# Does NOT print the branch name                                                                          
+# Use the parse_git_branch() function for that.                                                           
+parse_git_branch_color() {
+    br=$(parse_git_branch)
+    if [[ $br == "(master)" || $br == "(master*)" || $br == "(master**)" || $br == "(master***)" ]]; then
+        echo -e "${blue}"
+    else
+        echo -e "${green}"
+    fi
+}
