@@ -1,55 +1,29 @@
 set nocompatible              " be iMproved, required
-filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+call plug#begin('~/.vim/plugged')
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 " Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plugin 'scrooloose/nerdtree'
+Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plug 'scrooloose/nerdtree'
 
-Plugin 'junegunn/vim-easy-align'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'junegunn/vim-easy-align'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
-Plugin 'gregsexton/gitv'
+Plug 'gregsexton/gitv'
 
-Plugin 'MarcWeber/vim-addon-mw-utils' "Plugin for snipmate
-Plugin 'tomtom/tlib_vim' " Plugin for snipmate
-Plugin 'garbas/vim-snipmate'
+Plug 'MarcWeber/vim-addon-mw-utils' "Plugin for snipmate
+Plug 'tomtom/tlib_vim' " Plugin for snipmate
+Plug 'garbas/vim-snipmate'
 
 " Show the Outlines of the page
-Plugin 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 
 " Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
-Plugin 'kien/ctrlp.vim'
-" Trace Code
+Plug 'kien/ctrlp.vim'
+call plug#end()
 
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 
 " =================
 " "  settings
@@ -147,9 +121,29 @@ set wildignore+=tmp/**
 syntax on                             " syntax highlight
 let base16colorspace=256
 
+nnoremap <silent>n :tabnext<CR>
+nnoremap <silent>p :tabprevious<CR>
+nnoremap <C-H> :tabprev<CR>
+nnoremap <C-L> :tabnext<CR>
+nnoremap <tab> v>
+nnoremap <s-tab> v<
+
+"====================================================================
+"NERDTREE
+"====================================================================
 "nmap <F5> :NERDTreeToggle <CR>
 nmap <C-T> :NERDTree<CR>
-
+let NERDTreeQuitOnOpen = 1
+let NERDTreeChDirMode = 2
+let NERDTreeMouseMode = 2
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let NERDTreeShowHidden = 1
+let NERDTreeShowBookmarks = 0
+let NERDTreeIgnore = ['\.git$', '\.DS_Store$']
+let g:NERDTreeWinSize = 30
+let g:nerdtree_tabs_focus_on_files = 1
+let g:nerdtree_tabs_open_on_gui_startup = 0
 "====================================================================
 "airline setting
 "====================================================================
@@ -189,7 +183,7 @@ let g:tagbar_autofocus = 1
 "====================================================================
 "CTRLP
 "====================================================================
-let g:ctrlp_map = '<c-p>'
+let g:ctrlp_map = '<c-f>'
 let g:ctrlp_cmd = 'CtrlP'
 "Exclude files and directories using Vim's wildignore and CtrlP's own "g:ctrlp_custom_ignore:
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
