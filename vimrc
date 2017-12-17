@@ -33,7 +33,11 @@ Plug 'plasticboy/vim-markdown', {'for': 'mkd'}
 
 Plug 'scrooloose/syntastic'
 Plug 'xitianfz/vim-python-syntax'
-Plug 'Valloric/YouCompleteMe' "Vim version needs 8.x
+Plug 'Valloric/YouCompleteMe'
+
+"Html Plugin
+Plug 'mattn/emmet-vim'
+
 call plug#end()
 
 colorscheme Tomorrow-Night-Bright
@@ -132,7 +136,7 @@ set wildignore+=tmp/**
 " theme
 syntax on                             " syntax highlight
 let base16colorspace=256
-
+filetype plugin on
 
 "Tab
 nnoremap <leader>tc :tabnew<CR>
