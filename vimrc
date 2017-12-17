@@ -12,7 +12,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-surround'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'mattn/emmet-vim'
-
+Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim'}
 
 
 Plug 'gregsexton/gitv'
@@ -31,11 +31,12 @@ Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 
 Plug 'plasticboy/vim-markdown', {'for': 'mkd'}
 
-
+Plug 'scrooloose/syntastic'
 Plug 'xitianfz/vim-python-syntax'
-
+Plug 'Valloric/YouCompleteMe' "Vim version needs 8.x
 call plug#end()
 
+colorscheme Tomorrow-Night-Bright
 " =================
 " "  settings
 " " =================
@@ -218,3 +219,16 @@ let g:ctrlp_custom_ignore = {'dir':  '\v[\/]\.(git|hg|svn)$','file': '\v\.(exe|s
 "====================================================================
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+
+
+"====================================================================
+"Syntastic
+"====================================================================
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
