@@ -6,13 +6,16 @@ Plug 'tpope/vim-fugitive'
 " Pass the path to set the runtimepath properly.
 Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plug 'scrooloose/nerdtree'
-
 Plug 'junegunn/vim-easy-align'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-surround'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'mattn/emmet-vim'
+
+
 
 Plug 'gregsexton/gitv'
-
 Plug 'MarcWeber/vim-addon-mw-utils' "Plugin for snipmate
 Plug 'tomtom/tlib_vim' " Plugin for snipmate
 Plug 'garbas/vim-snipmate'
@@ -22,8 +25,16 @@ Plug 'majutsushi/tagbar'
 
 " Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
 Plug 'kien/ctrlp.vim'
-call plug#end()
 
+" Any valid git URL is allowed
+Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+
+Plug 'plasticboy/vim-markdown', {'for': 'mkd'}
+
+
+Plug 'xitianfz/vim-python-syntax'
+
+call plug#end()
 
 " =================
 " "  settings
@@ -121,12 +132,23 @@ set wildignore+=tmp/**
 syntax on                             " syntax highlight
 let base16colorspace=256
 
-nnoremap <silent>n :tabnext<CR>
-nnoremap <silent>p :tabprevious<CR>
+
+"Tab
+nnoremap <leader>tc :tabnew<CR>
+nnoremap <leader>te :tabedit<SPACE>
+nnoremap <leader>tm :tabmove<SPACE>
+nnoremap <leader>tk :tabclose<CR>
 nnoremap <C-H> :tabprev<CR>
 nnoremap <C-L> :tabnext<CR>
-nnoremap <tab> v>
-nnoremap <s-tab> v<
+
+
+nnoremap <silent><F6> :CurrentLineWhitespaceOn<CR>
+nnoremap <silent><F7> :StripWhitespace<CR>
+
+"====================================================================
+" ctags
+"====================================================================
+nmap <Leader>c :!ctags --recurse --kinds-php=citf &<CR>
 
 "====================================================================
 "NERDTREE
@@ -184,9 +206,15 @@ let g:tagbar_autofocus = 1
 "CTRLP
 "====================================================================
 let g:ctrlp_map = '<c-f>'
-let g:ctrlp_cmd = 'CtrlP'
+"let g:ctrlp_cmd = 'CtrlP'
 "Exclude files and directories using Vim's wildignore and CtrlP's own "g:ctrlp_custom_ignore:
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 "let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_custom_ignore = {'dir':  '\v[\/]\.(git|hg|svn)$','file': '\v\.(exe|so|dll)$','link': 'some_bad_symbolic_links'}
 
+
+"====================================================================
+"UltiSnipsEdit
+"====================================================================
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
