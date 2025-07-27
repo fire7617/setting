@@ -1,0 +1,32 @@
+# 示例 GPTscript 文件
+# 這是一個簡單的腳本，用於生成代碼註釋
+
+name: code-commenter
+description: 為代碼生成清晰的註釋
+
+# 輸入參數
+args:
+  code: 需要添加註釋的代碼
+  language: 編程語言 (可選，默認為 auto)
+
+# 主要邏輯
+tools:
+  - name: analyze-code
+    description: 分析代碼結構和功能
+    args:
+      code: $code
+      language: $language
+
+# 輸出格式
+output: |
+  請為以下代碼生成清晰的註釋：
+  
+  ```$language
+  $code
+  ```
+  
+  要求：
+  1. 註釋要簡潔明了
+  2. 解釋代碼的主要功能
+  3. 說明重要的邏輯部分
+  4. 使用中文註釋 

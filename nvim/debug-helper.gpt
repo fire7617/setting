@@ -1,0 +1,39 @@
+name: debug-helper
+description: 幫助調試代碼問題
+
+args:
+  error_message: 錯誤信息
+  code_snippet: 相關的代碼片段
+  language: 編程語言
+  context: 問題發生的上下文 (可選)
+
+tools:
+  - name: analyze-error
+    description: 分析錯誤信息並提供解決方案
+    args:
+      error: $error_message
+      code: $code_snippet
+      lang: $language
+      context: $context
+
+output: |
+  根據您提供的錯誤信息和代碼，我來幫您分析問題：
+  
+  **錯誤信息：**
+  ```
+  $error_message
+  ```
+  
+  **相關代碼：**
+  ```$language
+  $code_snippet
+  ```
+  
+  **問題分析：**
+  [AI 將在這裡分析問題原因]
+  
+  **解決方案：**
+  [AI 將在這裡提供具體的解決步驟]
+  
+  **預防措施：**
+  [AI 將在這裡提供避免類似問題的建議] 

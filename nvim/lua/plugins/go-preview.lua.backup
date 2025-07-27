@@ -1,0 +1,45 @@
+return {
+  "rmagatti/goto-preview",
+  event = "LspAttach", -- 在 LSP 启动时加载
+  config = function()
+    require("goto-preview").setup({
+      width = 120,
+      height = 15,
+      border = { "↖", "─", "┐", "│", "┘", "─", "└", "│" },
+      default_mappings = false,
+      dismiss_on_move = true,
+      debug = false, -- Print debug information
+      opacity = nil, -- 0-100 opacity level of the floating window where 100 is fully transparent.
+      resizing_mappings = false, -- Binds arrow keys to resizing the floating window.
+      post_open_hook = nil, -- A function taking two arguments, a buffer and a window to be ran as a hook.
+      post_close_hook = nil, -- A function taking two arguments, a buffer and a window to be ran as a hook.
+      -- These two configs can also be passed down to the goto-preview definition and implementation calls for one off "peak" functionality.
+      focus_on_open = true, -- Focus the floating window when opening it.
+      force_close = true, -- passed into vim.api.nvim_win_close's second argument. See :h nvim_win_close
+      bufhidden = "wipe", -- the bufhidden option to set on the floating window. See :h bufhidden
+      stack_floating_preview_windows = true, -- Whether to nest floating windows
+      same_file_float_preview = true, -- Whether to open a new floating window for a reference within the current file
+      preview_window_title = { enable = true, position = "left" }, -- Whether to set the preview window title as the filename
+      zindex = 1, -- Starting zindex for the stack of floating windows
+    })
+
+    -- 设置键位绑定
+    vim.api.nvim_create_autocmd("LspAttach", {
+      callback = function(args)
+        local bufnr = args.buf
+        local opts = { buffer = bufnr, noremap = true, silent = true }
+
+        -- 定义和引用的预览
+        --vim.keymap.set("n", "gp", require("goto-preview").goto_preview_definition, opts)
+        --vim.keymap.set("n", "gP", require("goto-preview").goto_preview_type_definition, opts)
+        --vim.keymap.set("n", "gr", require("goto-preview").goto_preview_references, opts)
+        --vim.keymap.set("n", "gq", require("goto-preview").close_all_win, opts)
+
+        vim.keymap.set("n", "<leader>gl", require("goto-preview").goto_preview_definition, opts)
+        vim.keymap.set("n", "<leader>gL", require("goto-preview").goto_preview_type_definition, opts)
+        vim.keymap.set("n", "<leader>glr", require("goto-preview").goto_preview_references, opts)
+        vim.keymap.set("n", "<leader>glq", require("goto-preview").close_all_win, opts)
+      end,
+    })
+  end,
+}
