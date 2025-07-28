@@ -21,6 +21,8 @@
 | `<leader>ae` | AI 編輯代碼 |
 | `<leader>ah` | 聊天歷史 |
 | `<leader>as` | 停止 AI |
+| `<leader>af` | 標記當前檔案 |
+| `<leader>aF` | 選擇檔案標記 |
 | `<leader>gpt` | ChatGPT |
 
 ### 🔍 搜索和導航
@@ -158,6 +160,7 @@
 | `[e` | 上一個錯誤 |
 | `]w` | 下一個警告 |
 | `[w` | 上一個警告 |
+| `<leader>de` | 顯示診斷 |
 
 ### 🔧 工具和實用功能
 | 快捷鍵 | 功能 |
@@ -170,6 +173,7 @@
 | `<A-k>` | 向上移動行 |
 | `<leader>t4` | 設定 4 格縮排 |
 | `<leader>t2` | 設定 2 格縮排 |
+| `<leader>tp` | 設定 PHP 4 格縮排 |
 
 ### 🌳 Treesitter 文字物件
 | 快捷鍵 | 功能 |
@@ -234,6 +238,8 @@
 | `<leader>ae` | 編輯選中的代碼塊 | 讓 AI 編輯選中的代碼 |
 | `<leader>ah` | 顯示聊天歷史 | 查看之前的對話記錄 |
 | `<leader>as` | 停止當前 AI 請求 | 取消正在進行的 AI 操作 |
+| `<leader>af` | 標記當前檔案 | 快速標記當前檔案到 Avante |
+| `<leader>aF` | 選擇檔案標記 | 使用 Telescope 選擇檔案並標記 |
 
 #### 2. ChatGPT.nvim
 
@@ -586,6 +592,16 @@
 | `<A-j>` | 向下移動行 | 將當前行向下移動 |
 | `<A-k>` | 向上移動行 | 將當前行向上移動 |
 
+#### 21. 縮排設定 (keymaps.lua 配置)
+
+**功能**: 手動設定不同語言的縮排規則。
+
+| 快捷鍵 | 功能 | 說明 |
+|--------|------|------|
+| `<leader>t4` | 設定 4 格縮排 | 設定當前檔案為 4 格縮排 |
+| `<leader>t2` | 設定 2 格縮排 | 設定當前檔案為 2 格縮排 |
+| `<leader>tp` | 設定 PHP 4 格縮排 | 專門為 PHP 檔案設定 4 格縮排 |
+
 ---
 
 ### ⚙️ 切換選項
@@ -628,7 +644,7 @@
 ## 💡 記憶技巧
 
 ### 快捷鍵分類記憶：
-- **AI 功能**: `<leader>a*` (Ask, Chat, New, Toggle, Edit, History, Stop)
+- **AI 功能**: `<leader>a*` (Ask, Chat, New, Toggle, Edit, History, Stop, File)
 - **搜索功能**: `<leader>s*` (Search)
 - **文件樹**: `<leader>e*` (Explorer) + `<leader>be` (Buffer Explorer) + `<leader>ge` (Git Explorer)
 - **Git 功能**: `<leader>g*` (Git)
@@ -638,7 +654,8 @@
 - **預覽功能**: `<leader>p*` (Preview)
 - **窗口功能**: `<leader>w*` (Window)
 - **切換功能**: `<leader>u*` (Toggle)
-- **診斷功能**: `<leader>c*` (Code/Check)
+- **診斷功能**: `<leader>c*` (Code/Check) + `<leader>d*` (Diagnostic)
+- **縮排功能**: `<leader>t*` (Tab/Indent)
 
 ### 常用組合：
 1. **代碼開發**: AI建議 → 預覽定義 → 格式化 → Git狀態
