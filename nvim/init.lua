@@ -123,6 +123,9 @@ vim.opt.showmode = false
 --  See `:help 'clipboard'`
 vim.opt.clipboard = "unnamedplus"
 
+-- 如果遇到剪貼板問題，可以暫時註解下面這行
+-- vim.opt.clipboard = "unnamedplus"
+
 -- Enable break indent
 vim.opt.breakindent = true
 
@@ -172,7 +175,8 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
+-- 移除重複的 <leader>e 設定，因為 NeoTree 已經使用了這個快捷鍵
+-- vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
@@ -933,15 +937,31 @@ require("lazy").setup({
       ensure_installed = {
         "bash",
         "c",
+        "cpp",
+        "css",
         "diff",
+        "dockerfile",
+        "gitignore",
+        "go",
         "html",
+        "javascript",
+        "json",
+        "jsonc",
         "lua",
         "luadoc",
         "markdown",
         "markdown_inline",
+        "php",
+        "python",
         "query",
+        "regex",
+        "rust",
+        "sql",
+        "toml",
+        "typescript",
         "vim",
         "vimdoc",
+        "yaml",
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
@@ -953,6 +973,54 @@ require("lazy").setup({
         additional_vim_regex_highlighting = { "ruby" },
       },
       indent = { enable = true, disable = { "ruby" } },
+      -- 增量選擇功能
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<CR>",
+          node_incremental = "<CR>",
+          node_decremental = "<BS>",
+          scope_incremental = "<TAB>",
+        },
+      },
+      -- 文字物件功能
+      textobjects = {
+        enable = true,
+        select = {
+          enable = true,
+          lookahead = true,
+          keymaps = {
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+            ["ac"] = "@class.outer",
+            ["ic"] = "@class.inner",
+            ["al"] = "@loop.outer",
+            ["il"] = "@loop.inner",
+            ["ap"] = "@parameter.outer",
+            ["ip"] = "@parameter.inner",
+          },
+        },
+        move = {
+          enable = true,
+          set_jumps = true,
+          goto_next_start = {
+            ["]m"] = "@function.outer",
+            ["]]"] = "@class.outer",
+          },
+          goto_next_end = {
+            ["]M"] = "@function.outer",
+            ["]["] = "@class.outer",
+          },
+          goto_previous_start = {
+            ["[m"] = "@function.outer",
+            ["[["] = "@class.outer",
+          },
+          goto_previous_end = {
+            ["[M"] = "@function.outer",
+            ["[]"] = "@class.outer",
+          },
+        },
+      },
     },
     config = function(_, opts)
       -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
@@ -1021,6 +1089,27 @@ require("lazy").setup({
 --
 -- 引入 lspconfig
 local lspconfig = require('lspconfig')
+
+-- PHP 文件縮排設定 (強制覆蓋 vim-sleuth)
+vim.api.nvim_create_autocmd("BufRead", {
+  pattern = "*.php",
+  callback = function()
+    vim.opt_local.tabstop = 4
+    vim.opt_local.softtabstop = 4
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.expandtab = true
+  end,
+})
+
+vim.api.nvim_create_autocmd("BufNewFile", {
+  pattern = "*.php",
+  callback = function()
+    vim.opt_local.tabstop = 4
+    vim.opt_local.softtabstop = 4
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.expandtab = true
+  end,
+})
 
 -- 配置 Intelephense
 lspconfig.intelephense.setup({
