@@ -11,6 +11,37 @@ vim.keymap.set("n", "<leader>ae", "<cmd>AvanteEdit<CR>", { desc = "Edit selected
 vim.keymap.set("n", "<leader>ah", "<cmd>AvanteHistory<CR>", { desc = "Show chat history" })
 vim.keymap.set("n", "<leader>as", "<cmd>AvanteStop<CR>", { desc = "Stop current AI request" })
 
+-- 新增：檔案標記相關快捷鍵
+vim.keymap.set("n", "<leader>af", function()
+  -- 快速標記當前檔案到 Avante
+  local current_file = vim.fn.expand("%:p")
+  if current_file ~= "" then
+    vim.cmd("AvanteChat")
+    -- 這裡可以添加自動插入檔案標記的邏輯
+    print("已準備標記檔案: " .. current_file)
+  else
+    print("沒有打開的檔案")
+  end
+end, { desc = "Mark current file for AI analysis" })
+
+vim.keymap.set("n", "<leader>aF", function()
+  -- 使用 Telescope 選擇檔案並標記
+  local builtin = require("telescope.builtin")
+  builtin.find_files({
+    attach_mappings = function(prompt_bufnr, map)
+      local actions = require("telescope.actions")
+      map("i", "<CR>", function()
+        local selection = require("telescope.actions.state").get_selected_entry()
+        actions.close(prompt_bufnr)
+        -- 打開 Avante 並標記選中的檔案
+        vim.cmd("AvanteChat")
+        print("已選擇檔案: " .. selection[1])
+      end)
+      return true
+    end,
+  })
+end, { desc = "Select file to mark for AI analysis" })
+
 -- ============================================================================
 -- LSP (Language Server Protocol) 快捷鍵設定
 -- ============================================================================

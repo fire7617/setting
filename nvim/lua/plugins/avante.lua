@@ -12,6 +12,27 @@ return {
           model = "gpt-4o-mini",
         },
       },
+      -- 檔案選擇器配置
+      file_selector = {
+        provider = "telescope", -- 可選: "telescope", "mini.pick", "fzf"
+        telescope = {
+          -- Telescope 特定配置
+          layout_config = {
+            width = 0.8,
+            height = 0.8,
+          },
+        },
+        mini_pick = {
+          -- Mini.pick 特定配置
+        },
+        fzf = {
+          -- FZF 特定配置
+        },
+      },
+      -- 輸入提供者配置
+      input = {
+        provider = "snacks", -- 可選: "snacks", "dressing"
+      },
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
     build = "make",
