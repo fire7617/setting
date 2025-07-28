@@ -8,7 +8,7 @@ return {
   },
   config = function()
     require("chatgpt").setup({
-      api_key_cmd = "bach -c 'echo -n $ChatGPT_API_KEY'",
+      api_key_cmd = "bash -c 'echo -n $ChatGPT_API_KEY'",
       actions_paths = { "~/.config/nvim/chatgpt-actions.json" },
       chat = {
         keymaps = {
